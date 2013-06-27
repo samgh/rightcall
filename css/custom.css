@@ -1,0 +1,95 @@
+body .navbar .navbar-inner #branding a {
+  color: inherit;
+}
+body .navbar .navbar-inner #branding a:hover {
+  text-decoration: none;
+}
+body .navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, 
+	.navbar-inverse .nav .active > a:focus {
+	background-color: inherit;
+	box-shadow: none;
+	text-decoration: underline;
+}
+body .navbar .navbar-inner ul.nav li.active a:hover {
+  text-decoration: none;
+  color: #333;
+}
+body .navbar .navbar-inner {
+  background: #F5F5F5;
+}
+html {
+	background-color: #333333;
+}
+.wrapper {
+	min-height: 300px;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+	color: #0e6999
+}
+p a {
+	text-decoration: underline;
+}
+#comingsoon-container {
+	height: 0px;
+	position: relative;
+	top: -110px;
+	left: 130px;
+}
+#demo-frame > div.slider-container { 
+	padding: 10px !important; 
+}
+.center {
+	float: none;
+	margin: 0 auto;
+}
+#current-carrier label, #bad-carrier label {
+	margin: 20px;
+}
+#nav-buttons {
+	margin-top: 30px;
+}
+#nav-buttons button {
+	margin: 0 20px;
+}
+#twitter-widget-0 {
+	width: 300px;
+}
+#tumblr-embed ol {
+	list-style-type: none;
+}
+#tumblr-embed .tumblr_post {
+	margin: 50px 0;
+}
+#tumblr-embed .tumblr_link, #tumblr-embed .tumblr_title {
+  margin: 10px 0;
+  font-family: inherit;
+  font-weight: bold;
+  line-height: 20px;
+  text-rendering: optimizelegibility;
+  font-size: 2em;
+}
+#headline {
+	padding-top: 10px;
+}
+#headline #header-image {
+	height: 210px;
+}
+#start-button {
+	padding-top: 3em;
+}
+#start-button a {
+	font-size: 2em;
+	line-height: 1em;
+}
+fieldset {
+	min-height: 300px;
+}
+#deviceName {
+	margin-top: 20px;
+}
+#pricing {
+	padding-top: 0;
+}
+#pricing-details h2, #pricing-details h3, #pricing-details p {
+	color: #3E4956;
+}

@@ -1,0 +1,34 @@
+{% extends 'templates/base.html' %}
+{% block title %}
+Try RightCall now!
+{% endblock %}
+{% block try %}
+active
+{% endblock %}
+{% block content %}
+<section class="cta bg-color blue">
+	<div class="container">
+		<div class="row">
+			<div class="span10 offset1">
+				<div class="hero-unit aligncenter">
+					<h1>Try out RightCall for free!</h1>
+					<p class="lead black">Just enter your usage info and if you are interested in your savings, pick a payment plan and get your results. Its that easy and completely risk free.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="container wrapper featured">
+	<div class="aligncenter">
+		<!--<div class="btn btn-large disabled">-->
+		<a class="btn btn-large btn-bg-darker" href="/survey">
+			<h2>Take the survey</h2>
+			<!--<div id="comingsoon-container">
+				<img id="comingsoon" src="/img/comingsoon.png" />
+			</div>-->
+		</a>
+		<hr>
+		<h2>Email me at <a href="mailto:sam@rightcall.co">sam@rightcall.co</a></h2>
+	</div>
+</section>
+{% endblock %}

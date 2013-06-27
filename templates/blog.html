@@ -1,0 +1,28 @@
+{% extends 'templates/base.html' %}
+{% block title %}
+Blog
+{% endblock %}
+{% block blog %}
+active
+{% endblock %}
+{% block content %}
+<section class="container wrapper">
+	<div>
+		<div class="span6">
+			<h2>Welcome to the RightCall blog!</h2>
+			<p>We're so happy that you're here. We'll be posting lots of updates about all the exciting goings on around here, new product releases, tips to help you save money, and much more.  We hope you'll stick with us because we think its going to be a wild ride.</p>
+			<iframe border="0" allowtransparency="true" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=rightcall&color_scheme=light" frameborder="0" height="25" scrolling="no" width="144"></iframe>
+		</div>
+		<div class="pull-right" style="width:300px;">
+			<iframe class="pull-right" src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsamrightcall&amp;width=300&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;show_border=true&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:265px;" allowTransparency="true"></iframe>
+
+			<a class="twitter-timeline pull-right"  href="https://twitter.com/SamRightCall"  data-widget-id="347783285058973696">Tweets by @SamRightCall</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		</div>
+
+	</div>
+	<div class="span8" id="tumblr-embed">
+		<script type='text/javascript' src='http://rightcall.tumblr.com/js'></script>
+	</div>
+</section>
+{% endblock %}

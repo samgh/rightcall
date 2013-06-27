@@ -1,0 +1,78 @@
+{% set a = true %}
+{% extends 'templates/base.html' %}
+{% block title %}
+Survey
+{% endblock %}
+{% block content %}
+<section>
+	<div class="container wrapper" style="min-height:0px">
+		<h1 class="aligncenter">We found you <a>$300</a> in savings!</h1>
+		<h2 class="aligncenter">Select a pricing plan to see your results.</h2>
+	</div>
+</section>
+<section id="pricing" class="pricing bg-color grey">
+	<div class="container">
+		<div class="row">
+			<ul class="pricing-list pricing1 unstyled clearfix">
+				<li class="span4 aligncenter">
+					<div class="pricing-title">
+						<h3 class="light">Basic</h3>
+					</div>
+					<div class="pricing-price">
+						<div class="pricing-price-container bg-color dark-grey">
+							$10
+						</div>
+					</div>
+					<ul class="pricing-features unstyled">
+						<li><b>Best</b> Result</li>
+						<li><b>Unlimited</b> Projects</li>
+						<li><b>100GB</b> storage</li>
+						<li>A <b>free</b> dinner :)</li>
+					</ul>
+					<div class="pricing-action">
+						<a class="btn btn-flat btn-small btn-blue uppercase">Sign Up</a>
+					</div>
+				</li>
+				<li class="span4 aligncenter focus">
+					<div class="pricing-title">
+						<h3 class="light">Premium</h3>
+					</div>
+					<div class="pricing-price">
+						<div class="pricing-price-container bg-color yellow">
+							$20
+						</div>
+					</div>
+					<ul class="pricing-features unstyled">
+						<li><b>Top Ten</b> Results</li>
+						<li><b>Unlimited</b> Projects</li>
+						<li><b>100GB</b> storage</li>
+						<li>A <b>free</b> dinner :)</li>
+					</ul>
+					<div class="pricing-action">
+						<a class="btn btn-flat btn-small btn-orange uppercase">Sign Up</a>
+					</div>
+				</li>
+				<li class="span4 aligncenter">
+					<div class="pricing-title">
+						<h3 class="light">Deluxe</h3>
+					</div>
+					<div class="pricing-price">
+						<div class="pricing-price-container bg-color dark-grey">
+							$30
+						</div>
+					</div>
+					<ul class="pricing-features unstyled">
+						<li><b>All</b> Results</li>
+						<li><b>Unlimited</b> Projects</li>
+						<li><b>100GB</b> storage</li>
+						<li>A <b>free</b> dinner :)</li>
+					</ul>
+					<div class="pricing-action">
+						<a class="btn btn-flat btn-small btn-blue uppercase">Sign Up</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</section>
+{% endblock %}

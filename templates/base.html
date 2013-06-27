@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>RightCall &middot; {% block title %}{% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<!-- Custom Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300,500' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+
+
+		<!-- styles -->
+		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet">
+		<link href="css/styler/font-awesome.min.css" rel="stylesheet">
+		<link href="css/styler/style.css" rel="stylesheet">
+		<link href="css/custom.css" rel="stylesheet">
+		<link href="js/jqueryui/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<h1 id="branding" class="pull-left">
+						<a href="/"><!--RightCall--><img src="/img/RightCalllogo.png" /></a>
+					</h1>
+					{% if not a %}
+					<div class="nav-collapse collapse pull-right">
+						<ul class="nav">
+							<li class="{% block home %}{% endblock %}">
+								<a href="/">Home</a>
+							</li>
+							<li class="{% block try %}{% endblock %}">
+								<a href="/tryitnow">Try it now!</a>
+							</li>
+							<li class="{% block features %}{% endblock %}">
+								<a href="/features">Features</a>
+							</li>
+							<li class="{% block pricing %}{% endblock %}">
+								<a href="/pricing">Pricing</a>
+							</li>
+							<li class="{% block faq %}{% endblock %}">
+								<a href="/faq">FAQ</a>
+							</li> 
+							<li class="{% block about %}{% endblock %}">
+								<a href="/about">About Us</a>
+							</li>
+							<li class="{% block blog %}{% endblock %}">
+								<a href="/blog">Blog</a>
+							</li>
+						</ul>
+					</div><!--/.nav-collapse -->
+					{% endif %}
+				</div>
+			</div>
+	    </div>
+
+	    {% block content %}{% endblock %}
+
+		<footer class="bg-color dark-grey">
+			<div class="container">
+				<div class="row">
+					<div class="span6">
+						Copyright &copy; 2013 RightCall LLC &nbsp; &middot; &nbsp; <a href="/privacy">Privacy</a> &nbsp; &middot; &nbsp; <a href="/about">Contact</a>
+					</div>
+					<div class="span6 alignright">
+						<ul class="nav nav-pills pull-right">
+							<li>
+								<a href="#">Top of Page</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="js/styler/jquery.min.js"></script>
+		<script src="js/bootstrap/bootstrap.min.js"></script>
+		<script src="js/jqueryui/js/jquery-ui-1.10.3.custom.min.js"
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-41806267-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+		<script>
+			$(document).ready(function(){
+				$('.carousel').carousel({
+					interval: false
+				});
+				$("[rel=tooltip]").tooltip();
+				$('.tabbable a').click(function (e) {
+				e.preventDefault();
+				$(this).tab('show');
+			});
+			});
+		</script>
+		<script src="js/custom.js"></script>
+	</body>
+</html>
