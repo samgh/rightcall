@@ -5,6 +5,14 @@ api_version: 1
 threadsafe: false
 
 handlers:
+- url: /robots.txt
+  static_files: robots.txt
+  upload: robots.txt
+
+- url: /humans.txt
+  static_files: humans.txt
+  upload: humans.txt
+
 - url: /css
   static_dir: css
 
