@@ -295,7 +295,7 @@ application = webapp2.WSGIApplication([
     ('/about', About),
     ('/pricing', Pricing),
     ('/blog', Blog),
-    ('/survey', Survey),
+    #('/survey', Survey),
     ('/response', Response),
     ('/thanks', Thanks),
     ('/tryagain', TryAgain),
