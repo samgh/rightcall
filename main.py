@@ -93,6 +93,7 @@ class Survey(webapp2.RequestHandler):
 
 class Response(webapp2.RequestHandler):
     def post(self):
+        input_name = cgi.escape(self.request.get('name'))
         input_email = cgi.escape(self.request.get('email'))
         input_feedback = cgi.escape(self.request.get('feedback'))
 
@@ -110,6 +111,7 @@ class Response(webapp2.RequestHandler):
 
         # Prepare the dictionary to write                                                                                                                                                                           
         dict = {}
+        dict['name'] = input_name
         dict['email'] = input_email
         dict['feedback'] = input_feedback
         dict['time'] = time.strftime('%b, %d, %H:%M:%S')
@@ -119,7 +121,7 @@ class Response(webapp2.RequestHandler):
         if isinstance(entry, gdata.spreadsheet.SpreadsheetsList):
           self.redirect("/thanks")
         else:
-          print "Insert row failed."
+          print "Please try again."
 
 class Thanks(webapp2.RequestHandler):
     def get(self):
