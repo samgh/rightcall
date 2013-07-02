@@ -273,6 +273,12 @@ class Survey2Response(webapp2.RequestHandler):
         else:
             print "Please go back and try again."
 
+class Survey3(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers ['Content-Type'] = 'text/html'
+        template = JINJA_ENVIRONMENT.get_template('templates/survey3.html')
+        self.response.write(template.render())
+
 class ThankYou(webapp2.RequestHandler):
     def get(self):
         self.response.headers ['Content-Type'] = 'text/html'
@@ -305,6 +311,7 @@ application = webapp2.WSGIApplication([
     ('/survey1response', Survey1Response),
     ('/survey2', Survey2),
     ('/survey2response', Survey2Response),
+    ('/survey3', Survey3),
     ('/thankyou', ThankYou),
     ('/.*', NotFoundPageHandler)
 ], debug=True)
