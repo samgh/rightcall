@@ -21,15 +21,35 @@ active
 
 <section class="container featured">
 	<div class="aligncenter">
-		<a class="btn btn-large btn-bg-darker disabled" href="/survey">
+		<h3>If you live in the USA and are looking for a new plan for your smartphone, look no further. It takes 10 seconds and you may save big!</h3>
+		<a class="btn btn-large btn-bg-darker" href="/surveyintro">
 			<h2>Take the survey</h2>
-			<div id="comingsoon-container">
+			<!--<div id="comingsoon-container">
 				<img id="comingsoon" src="/img/comingsoon.png" />
-			</div>
+			</div>-->
 		</a>
 	</div>
 </section>
-<section>
+<section class="container featured">
+	<div class="aligncenter">
+		<h3>If you don't fall into that category, we're sorry, but we're not quite ready for you yet. We hope you're interested and will sign up so that we can help you as soon as we are able!</h3>
+		<form method="post" action="/response">
+		    <fieldset>
+			    <div id="signup-container" class="span6">
+			    	<div class="aligncenter">
+					    <input name="name" type="text" placeholder="Name..."><br />
+					    <input name="email" type="text" placeholder="Email address...">
+					    <span class="help-block">If you give us your email, we'd like to keep you up to date and let you know as soon as we have a spot for you. And we promise we'll put it in a safe place!</span>
+					    <label class="checkbox">
+					    <input name="feedback" type="checkbox"><label>I don't want to help shape the future of RightCall with my feedback :(</label>
+					    <input type="submit" class="btn" value="Sign Up!">
+					</div>
+				</div>
+		    </fieldset>
+	    </form>
+	</div>
+</section>
+<!--<section>
 	<div class="container wrapper">
 		<h1 class="aligncenter">Coming soon!</h1>
 		<form method="post" action="/response">
@@ -47,5 +67,5 @@ active
 		    </fieldset>
 	    </form>
 	</div>
-</section>
+</section>-->
 {% endblock %}

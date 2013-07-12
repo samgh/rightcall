@@ -51,6 +51,7 @@ $(function() {
 		$('.help-inline').hide();
 		currentCarrier2();
 	}
+	$('.tabbable .tab-pane a').unbind();
 });
 function validate_zip(zip) {
 	var reg = /^([0-9][0-9][0-9][0-9][0-9])?$/;

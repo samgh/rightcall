@@ -111,3 +111,7 @@ fieldset {
 	top: 0;
 	left: 0;
 }
+#signup-container {
+	margin: 0 auto;
+	float: none;
+}
