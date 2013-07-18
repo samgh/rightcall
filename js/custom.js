@@ -1,7 +1,7 @@
 $(function() {
 	if (window.location.pathname == '/survey1') {
 		$('.help-inline').hide();
-		sameCarrier1();
+		commentsText1();
 	}
 	else if (window.location.pathname == '/survey2') {
 		$( "#currentAmountSlider" ).slider({
@@ -38,10 +38,10 @@ $(function() {
 		$( "#amountTexts" ).val( $( "#amountTextsSlider" ).slider( "value" ) );
 
 		$( "#amountDataSlider" ).slider({
-			value:5,
+			value:1000,
 			min: 0,
-			max: 15,
-			step: 0.5,
+			max: 15000,
+			step: 50,
 			slide: function( event, ui ) {
 				$( "#amountData" ).val( ui.value );
 			}
@@ -235,7 +235,7 @@ function commentsText1() {
 	$('#comments-text').show();
 	$('#next-button').show();
 	$('#next-button').html('Next &raquo;');
-	$('#back-button').show();
+	$('#back-button').hide();
 	$('#next-button').click(function() {
 
 		$('#back-button').unbind();
@@ -296,7 +296,8 @@ function currentAmount2() {
 			$('#current-amount .help-inline').hide();
 			$('#back-button').unbind();
 			$('#next-button').unbind();
-			sameCarrier2();
+			//sameCarrier2();
+			amountMinutes2();
 		} else {
 			$('#current-amount .control-group').addClass('error');
 			$('#current-amount .help-inline').show();
@@ -501,7 +502,8 @@ function amountMinutes2() {
 	$('#back-button').click(function() {
 		$('#back-button').unbind();
 		$('#next-button').unbind();
-		travel2();
+		//travel2();
+		currentAmount2();
 	});
 }
 function amountTexts2() {
