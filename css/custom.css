@@ -4,7 +4,8 @@ body .navbar .navbar-inner #branding a {
 body .navbar .navbar-inner #branding a:hover {
   text-decoration: none;
 }
-body .navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover, 
+body .navbar-inverse .nav .active > a,
+	.navbar-inverse .nav .active > a:hover, 
 	.navbar-inverse .nav .active > a:focus {
 	background-color: inherit;
 	box-shadow: none;
@@ -68,31 +69,6 @@ p a {
   text-rendering: optimizelegibility;
   font-size: 2em;
 }
-#headline {
-	padding-top: 10px;
-}
-#headline #header-image {
-	height: auto;
-}
-#start-button {
-	padding-top: 3em;
-}
-#start-button a {
-	font-size: 2em;
-	line-height: 1em;
-}
-fieldset {
-	min-height: 300px;
-}
-#deviceName {
-	margin-top: 20px;
-}
-#pricing {
-	padding-top: 0;
-}
-#pricing-details h2, #pricing-details h3, #pricing-details p {
-	color: #3E4956;
-}
 .transparent {
 	background-color: rgba(255,255,255,0.5) !important;
 }
@@ -106,12 +82,18 @@ fieldset {
 .position {
 	position: relative;
 }
-.comingsoon {
-	position: absolute;
-	top: 0;
-	left: 0;
+footer a {
+	z-index: 1000;
+	position: relative;
 }
-#signup-container {
-	margin: 0 auto;
-	float: none;
+footer a:hover {
+	color: inherit;
+}
+#email-signup-container input, #email-signup-container button {
+	font-size: 20px;
+	padding: 0 10px;
+	height: 40px;
+}
+#email-signup-container button {
+	height: 42px;
 }

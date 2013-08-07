@@ -1,4 +1,39 @@
+function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+function getURLParameter(name) {
+    return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+    );
+}
+
 $(function() {
+	if (window.location.pathname == '/') {
+		onResize();
+		$(window).bind('resize', onResize);
+	};
+	$('#email-signup-container button').click(function(e) {
+		e.preventDefault();
+		if (isEmail($('#email-signup').val())) {
+			$('form').submit();
+			alert('Thank you.');
+		} else {
+			alert('Please enter a valid email address.');
+		}
+	});
+});
+
+function onResize() {
+	var signup = $('#sign-up');
+	var footer = $('footer');
+	if((footer.position().top - (signup.position().top + signup.height())) < 300) {
+		$('#phone-image').css('display','none');
+	} else {
+		$('#phone-image').css('display','block');
+	}
+};
+/*$(function() {
 	if (window.location.pathname == '/survey1') {
 		$('.help-inline').hide();
 		commentsText1();
@@ -596,3 +631,4 @@ function personalInfo2() {
 		commentsText2();
 	});
 }
+*/

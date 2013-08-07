@@ -1,0 +1,47 @@
+html, body {
+	height: 100%;
+}
+body {
+	padding: 0;
+}
+body .navbar .navbar-inner {
+  /*background: #F5F5F5;*/
+  background: rgba(150,150,150,.5);
+}
+#branding {
+	display: none;
+}
+#headline {
+	background: url('/img/clouds2.png');
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	padding-top: 0;
+	height: 100%;
+}
+#headline .container {
+	height: 100%;
+	position: relative;
+}
+#headline #header-image {
+	height: auto;
+}
+#logo {
+	width: 40%;
+	float: none;
+	margin: 90px auto 0;
+}
+#phone-image {
+	position: absolute;
+	bottom: 0;
+	padding-bottom: 99px;
+}
+footer {
+	margin-top: -99px;
+}
+#landing-body {
+	min-height: 200px;
+}
+#sign-up {
+	position: relative;
+	z-index: 1000;
+}

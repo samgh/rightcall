@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>RightCall &middot; {% block title %}{% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Make the RightCall when choosing a cell phone plan. There are so many options, why not let us do the hard work.">
+		<meta name="author" content="Sam Gavis-Hughson, RightCall LLC, 2013">
+
+		<!-- Custom Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300,500' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+
+
+		<!-- styles -->
+		<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap/bootstrap-responsive.css" rel="stylesheet">
+		<link href="css/styler/font-awesome.min.css" rel="stylesheet">
+		<link href="css/styler/style.css" rel="stylesheet">
+		<link href="css/custom.css" rel="stylesheet">
+		<link href="js/jqueryui/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet">
+
+		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<section id="headline" class="featured">
+			<div class="container">
+				<div class="row">
+					<div id="logo">
+						<img src="/img/RightCalllarge.png" />
+					</div>
+					<div class="intro aligncenter">
+						<p class="lead">80% of Americans overpay for wireless.  Don't be one of them!</p>
+		                <p class="lead">Find <em>your</em> cell phone plan.</p>
+					</div>
+					<div id="sign-up" class="align center">
+						<form>
+							<fieldset class="aligncenter">
+								<div class="input-append aligncenter">
+									<input class-"span2" id="email-signup" type="text" placeholder="name@email.com">
+									<button class="btn" type="button">Request Invite!</button>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="span12 aligncenter">
+						<img id="header-image" src="img/banner2.png">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="features" class="">
+			<div class="container">
+				
+				<div class="row">
+					<ul class="features features-list1 clearfix unstyled">
+						<li class="span6">
+							<div class="icons pull-left">
+								<img src="/img/money.png" alt="Save money on wireless plans" />
+							</div>
+							<div class="content">
+								<h3>Save Money</h3>
+								<p>We carefully examine how you use your phone to remove every bit of unnecessary waste.  With your permission, we will access your online account to gather detailed information for your recommendation.</p>
+							</div>
+						</li>
+						<li class="span6">
+							<div class="icons pull-left">
+								<img src="/img/scale.png" alt="Receive unbiased advice" />
+							</div>
+							<div class="content">
+								<h3>Unbiased Advice</h3>
+								<p>We never accept money from any carriers, so the recommendations that we provide never have an ulterior motive and you can be sure you're getting the best information.</p>
+							</div>
+						</li>
+						<li class="span6">
+							<div class="icons pull-left">
+								<img src="/img/clock.png" alt="Save time choosing wireless plans" />
+							</div>
+							<div class="content">
+								<h3>Save Time</h3>
+								<p>Just give us some basic information and then sit back and relax.  We will analyze all the necessary information to provide you with a recommendation.</p>
+							</div>
+						</li>
+						<li class="span6">
+							<div class="icons pull-left">
+								<img src="/img/badge.png" alt="Money-back guarantee if you don't save money" />
+							</div>
+							<div class="content">
+								<h3>100% Guarantee</h3>
+								<p>If we are unable to save you money, you won't pay a cent.  If you pay and are unsatisfied, we will refund you 100% no questions asked.</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<footer class="bg-color dark-grey">
+			<div class="container">
+				<div class="row">
+					<div class="span6">
+						Copyright &copy; 2013 RightCall LLC &nbsp; &middot; &nbsp; <a href="/privacy">Privacy</a> &nbsp; &middot; &nbsp; <a href="/about">Contact</a>
+					</div>
+					<div class="span6 alignright">
+						<ul class="nav nav-pills pull-right">
+							<li>
+								<a href="#">Top of Page</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="js/styler/jquery.min.js"></script>
+		<script src="js/bootstrap/bootstrap.min.js"></script>
+		<script src="js/jqueryui/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-41806267-1']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		</script>
+		<script>
+			$(document).ready(function(){
+				$('.carousel').carousel({
+					interval: false
+				});
+				$("[rel=tooltip]").tooltip();
+				$('.tabbable a').click(function (e) {
+				e.preventDefault();
+				$(this).tab('show');
+			});
+			});
+		</script>
+		<script src="js/custom.js"></script>
+	</body>
+</html>

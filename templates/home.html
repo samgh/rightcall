@@ -1,4 +1,5 @@
 {% extends 'templates/base.html' %}
+{% set landing = true %}
 {% block title %}
 Find cell phone plans!
 {% endblock %}
@@ -6,19 +7,29 @@ Find cell phone plans!
 active
 {% endblock %}
 {% block content %}
-<section id="headline" class="featured bg-color silver">
-	<div class="container">
+<section id="headline" class="featured">
+	<div id="landing-body" class="container">
 		<div class="row">
-			<div class="intro span8 offset1 pull-left">
-				<h1>Find <em>your</em> cell phone plan</h1>
-				<p class="lead">80% of Americans overpay for wireless.  Don't be one of them!</p>
-                <p class="lead">There are so many choices, so why not let us handle the details?</p>
+			<div id="logo">
+				<img src="/img/RightCalllarge.png" />
 			</div>
-			<div id="start-button" class="pull-left">
-				<a class="btn btn-flat btn-blue btn-large" href="/tryitnow">Start saving<br />now!</a>
+			<div class="intro aligncenter">
+				<p class="lead">80% of Americans overpay for wireless.  Don't be one of them!</p>
+                <p class="lead">Find <em>your</em> cell phone plan.</p>
+			</div>
+			<div id="sign-up" class="align center">
+				<form action="/insert" method="post">
+					<fieldset class="aligncenter">
+						<div id="email-signup-container" class="input-append aligncenter control-group">
+							<input id="email-signup" class="span3" name="email-signup" type="text" placeholder="name@email.com" />
+							<input type="hidden" name="redirect" value="/">
+							<button class="btn" type="submit">Request Invite!</button>
+						</div>
+					</fieldset>
+				</form>
 			</div>
 		</div>
-		<div class="row">
+		<div id="phone-image" class="row">
 			<div class="span12 aligncenter">
 				<img id="header-image" src="img/banner2.png">
 			</div>
@@ -26,7 +37,7 @@ active
 	</div>
 </section>
 
-<section id="features" class="">
+<!--<section id="features" class="">
 	<div class="container">
 		
 		<div class="row">
@@ -55,7 +66,7 @@ active
 					</div>
 					<div class="content">
 						<h3>Save Time</h3>
-						<p>Just provide us with access to your wireless usage information and then sit back and relax.  We will collect all the necessary information to provide you with a recommendation.</p>
+						<p>Just give us some basic information and then sit back and relax.  We will analyze all the necessary information to provide you with a recommendation.</p>
 					</div>
 				</li>
 				<li class="span6">
@@ -69,234 +80,6 @@ active
 				</li>
 			</ul>
 		</div>
-		<div class="cta bg-color green">
-			<div class="row-fluid">
-				<div class="span8">
-					<h2 class="light">Want to find out more about how we can save you time and money?</h2>
-				</div>
-				<div class="span4">
-					<div class="cta-action pull-right">
-						<a class="btn btn-flat btn-bg-darker btn-large" href="/features">Check out features</a>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
-</section>
-<section class="cta bg-color dark-grey">
-	<div class="container">
-		<div class="row">
-			<div class="span10 offset1">
-				<div class="hero-unit aligncenter">
-					<h1>Are you ready to start saving money?</h1>
-					<p class="lead">All it takes is some information about your wireless usage and we'll help you find the perfect plan to save you money while maintaining good coverage.</p>
-					<a class="btn btn-flat btn-orange btn-large uppercase" href="/tryitnow">I want to save money!</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section id="steps" class="content bg-color blue">
-	<div class="container">
-		<div class="row">
-			<div class="hero-unit aligncenter">
-				<h1 class="normal">3 EASY steps to know you're making the RightCall!</h1>
-				<p class="lead"></p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="span12">
-				<div id="carousel2" class="carousel slide custom2">
-					<ul class="carousel-indicators aligncenter row-fluid">
-						<li data-target="#carousel2" data-slide-to="0" class="active span4">
-							<div class="round bg-color blue"><span>1</span></div>
-							<div class="desc">Provide usage info</div>
-						</li>
-						<li data-target="#carousel2" data-slide-to="1" class="span4">
-							<div class="round bg-color blue">2</div>
-							<div class="desc">See savings and pick pricing</div>
-						</li>
-						<li data-target="#carousel2" data-slide-to="2" class="span4">
-							<div class="round bg-color blue">3</div>
-							<div class="desc">Get your results!</div>
-						</li>
-					</ul>
-					<div class="carousel-inner clearfix">
-						<div class="active item clearfix">
-							<div class="row-fluid clearfix">
-								<div class="span7 aligncenter">
-									<img src="img/demo1.png" width="500">
-								</div>
-								<div class="span5">
-									<h2 class="normal">1. Provide usage info</h2>
-									<p class="large">We provide a variety of options for your convenience. <a href="/tryitnow">Here</a> you can provide us with access to your information, upload copies of your wireless bills, or enter the information manually. Once you have given us your information, you can sit back and relax while we take care of finding you the perfect plans.
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="row-fluid clearfix">
-								<div class="span5">
-									<h2 class="normal">2. See savings and pick pricing</h2>
-									<p class="large">Once you've completed the <a href="/tryitnow">form</a>, check out exactly how much you can save.  If you don't think its worth it, you don't have to pay a penny, but we thing you'll be pleased.</p>
-									<p class="large">We offer a variety of <a href="/pricing">pricing plans</a> to fit your needs, and we will never ask you to spend more money than we are saving you!</p>
-								</div>
-								<div class="span7 aligncenter">
-									<img src="img/demo2.png" width="500">
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="row-fluid clearfix">
-								<div class="span7 aligncenter">
-									<img src="img/styler/dummy/day-gallery3.png" width="450">
-								</div>
-								<div class="span5">
-									<h2 class="normal">3. Get your results!</h2>
-									<p class="large">Now that you've chosen your plan, we will give you the results for your chosen plan and you can do with them whatever you wish.</p>
-									<p class="large">You can also see why your results are ideal for you.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<a class="carousel-control left" href="#carousel2" data-slide="prev">&lsaquo;</a>
-					<a class="carousel-control right" href="#carousel2" data-slide="next">&rsaquo;</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!--
-<section id='testimonial' class="testimonial bg-color dark-grey">
-	<div class="container">
-		<div class="row">
-			<div class="span12">
-				<div class="hero-unit aligncenter">
-					<h1 class="normal">Our happy customers said...</h1>
-					<p class="lead">Fingerstache authentic forage blue bottle odio cliche irure flannel retro. Minim forage mustache, consequat mollit nisi seitan biodiesel laboris assumenda esse.</p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="span12">
-				<div id="testimonial-slider" class="carousel slide testimonial testimonial-list2">
-					<ul class="carousel-indicators aligncenter row-fluid">
-						<li data-target="#testimonial-slider" data-slide-to="0" class="active span3">
-							<div class="thumbnail"><img src="http://dribbble.s3.amazonaws.com/users/14457/avatars/original/wfx_rasta.jpg?1305134813"></div>
-							<div class="desc">
-								<h5 class="name">Wafiq Rodzuan</h5>
-								<p class="title">Senior Visual Practitioner</p>
-							</div>
-							<div class="triangle green"></div>
-						</li>
-						<li data-target="#testimonial-slider" data-slide-to="1" class="span3">
-							<div class="thumbnail"><img src="http://dribbble.s3.amazonaws.com/users/56098/avatars/original/393847_2683298493239_1579654026_2361191_1422997516_n.jpeg?1330088797"></div>
-							<div class="desc">
-								<h5 class="name">Syazwan Zahari</h5>
-								<p class="title">Lead UI Champion</p>
-							</div>
-							<div class="triangle yellow"></div>
-						</li>
-						<li data-target="#testimonial-slider" data-slide-to="2" class="span3">
-							<div class="thumbnail"><img src="http://dribbble.s3.amazonaws.com/users/110829/avatars/small/4411226_300.jpg?1354939599"></div>
-							<div class="desc">
-								<h5 class="name">Ajmal Afif</h5>
-								<p class="title">Senior UX Ninja</p>
-							</div>
-							<div class="triangle blue"></div>
-						</li>
-						<li data-target="#testimonial-slider" data-slide-to="3" class="span3">
-							<div class="thumbnail"><img src="http://dribbble.s3.amazonaws.com/users/16168/avatars/original/heh.jpg?1305136272"></div>
-							<div class="desc">
-								<h5 class="name">Syahmi Ismail</h5>
-								<p class="title">Black Belt Designer</p>
-							</div>
-							<div class="triangle orange"></div>
-						</li>
-					</ul>
-					<div class="carousel-inner clearfix">
-						<div class="active item clearfix">
-							<div class="row-fluid clearfix">
-								<div class="span12">
-									<blockquote class="big bg-color green">Do tonx sunt assumenda, consequat fingerstache minim single-origin coffee pariatur street art pickled cillum. Truffaut cupidatat keytar scenester readymade.</blockquote>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="row-fluid clearfix">
-								<div class="span12">
-									<blockquote class="bg-color yellow">Flannel actually selfies nostrud squid american apparel. Pop-up sapiente mcsweeney's ethical. Ea banjo terry richardson raw denim, DIY four loko hashtag culpa sriracha authentic. Incididunt high life gentrify, polaroid nesciunt nihil est nostrud. Banjo banksy vero seitan ethnic small batch, squid 3 wolf moon keffiyeh. Butcher sed id thundercats. Seitan reprehenderit veniam raw denim.</blockquote>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="row-fluid clearfix">
-								<div class="span12">
-									<blockquote class="bg-color blue">Tempor meh helvetica, trust fund typewriter before they sold out cillum art party hoodie squid letterpress incididunt proident nisi quinoa. Bicycle rights street art stumptown, next level retro locavore mcsweeney's small batch aliqua sustainable 90's aute readymade assumenda.</blockquote>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="row-fluid clearfix">
-								<div class="span12">
-									<blockquote class="bg-color orange">Flannel actually selfies nostrud squid american apparel. Pop-up sapiente mcsweeney's ethical. Ea banjo terry richardson raw denim, DIY four loko hashtag culpa sriracha authentic. Incididunt high life gentrify, polaroid nesciunt nihil est nostrud. Banjo banksy vero seitan ethnic small batch, squid 3 wolf moon keffiyeh. Butcher sed id thundercats. Seitan reprehenderit veniam raw denim.</blockquote>
-								</div>
-							</div>
-						</div>
-					</div>
-					<a class="carousel-control left" href="#testimonial-slider" data-slide="prev">&lsaquo;</a>
-					<a class="carousel-control right" href="#testimonial-slider" data-slide="next">&rsaquo;</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<section class="testimonial">
-	<div class="container">
-		<div class="row">
-			<ul class="testimonial testimonial-list1 unstyled clearfix">
-				<li class="span4">
-					<blockquote>GoCardless takes away the uncomfortable conversations with our customers about money. With Direct Debits in place we can now focus on talking about our product.</blockquote>
-					<div class="desc">
-						<div class="thumbnail pull-left"><img src="http://dribbble.s3.amazonaws.com/users/13842/avatars/original/seasonably_small.jpeg?1314207891"></div>
-						<h5 class="name">Gaddafi Rusli</h5>
-						<p class="title">Senior Visual Practitioner</p>
-					</div>
-				</li>
-				<li class="span4">							
-					<blockquote>Twee et wolf, enim YOLO cliche nisi photo booth umami brooklyn officia. Lomo enim vinyl, quinoa small batch duis pariatur artisan voluptate skateboard.</blockquote>
-					<div class="desc">
-						<div class="thumbnail pull-left"><img src="http://dribbble.s3.amazonaws.com/users/17863/avatars/original/avatar.jpg?1334675537"></div>
-						<h5 class="name">Izuddin Helmi</h5>
-						<p class="title">Lead UI Champion</p>
-					</div>
-				</li>
-				<li class="span4">							
-					<blockquote>Do tonx sunt assumenda, consequat fingerstache minim single-origin coffee pariatur street art pickled cillum. Truffaut cupidatat keytar scenester readymade.</blockquote>
-					<div class="desc">
-						<div class="thumbnail pull-left"><img src="http://dribbble.s3.amazonaws.com/users/17980/avatars/original/fath.jpg?1338360336"></div>
-						<h5 class="name">Nur Fathihah</h5>
-						<p class="title">Senior UX Ninja</p>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
-</section>
--->
-<section id="cta" class="bg-color light-grey">
-	<div class="container">
-		<div class="row">
-			<div class="span10 offset1">
-				<div class="hero-unit aligncenter">
-					<h2 class="normal">Ready to get started with RightCall?</h2>
-					<p class="big">Why not give it a shot? You can determine your savings for free, so why not see if you could save some serious cash?</p>
-					<a href="/tryitnow" class="btn btn-flat btn-orange uppercase">Try out RightCall</a>
-					<a href="/features" class="btn btn-flat btn-blue uppercase">Learn More</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
+</section>-->
 {% endblock %}

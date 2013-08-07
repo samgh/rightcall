@@ -19,6 +19,9 @@
 		<link href="css/styler/font-awesome.min.css" rel="stylesheet">
 		<link href="css/styler/style.css" rel="stylesheet">
 		<link href="css/custom.css" rel="stylesheet">
+		{% if landing %}
+		<link href="css/landing.css" rel="stylesheet">
+		{% endif %}
 		<link href="js/jqueryui/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet">
 
 		<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -36,7 +39,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<h1 id="branding" class="pull-left">
-						<a href="/"><!--RightCall--><img src="/img/RightCalllogo.png" /></a>
+						<a href="/"><img src="/img/RightCalllogo.png" /></a>
 					</h1>
 					{% if not a %}
 					<div class="nav-collapse collapse pull-right">
@@ -44,18 +47,9 @@
 							<li class="{% block home %}{% endblock %}">
 								<a href="/">Home</a>
 							</li>
-							<li class="{% block try %}{% endblock %}">
-								<a href="/tryitnow">Try it now!</a>
+							<li class="{% block whatis %}{% endblock %}">
+								<a href="/whatis">What is RightCall?</a>
 							</li>
-							<li class="{% block features %}{% endblock %}">
-								<a href="/features">Features</a>
-							</li>
-							<li class="{% block pricing %}{% endblock %}">
-								<a href="/pricing">Pricing</a>
-							</li>
-							<li class="{% block faq %}{% endblock %}">
-								<a href="/faq">FAQ</a>
-							</li> 
 							<li class="{% block about %}{% endblock %}">
 								<a href="/about">About Us</a>
 							</li>
@@ -74,10 +68,15 @@
 		<footer class="bg-color dark-grey">
 			<div class="container">
 				<div class="row">
-					<div class="span6">
+					<div class="span5">
 						Copyright &copy; 2013 RightCall LLC &nbsp; &middot; &nbsp; <a href="/privacy">Privacy</a> &nbsp; &middot; &nbsp; <a href="/about">Contact</a>
 					</div>
-					<div class="span6 alignright">
+					<div class="span2 aligncenter">
+						<a href="http://www.facebook.com/samrightcall" target="_blank"><img src="/img/facebook.png" alt="Follow on Facebook" width="40"></a>
+						<a href="http://www.twitter.com/samrightcall" target="_blank"><img src="/img/twitter.png" alt="Follow on Twitter" width="40"></a>
+						<a href="http://rightcall.tumblr.com" target="_blank"><img src="/img/tumblr.png" alt="Follow on Tumblr" width="40"></a>
+					</div>
+					<div class="span5 alignright">
 						<ul class="nav nav-pills pull-right">
 							<li>
 								<a href="#">Top of Page</a>
