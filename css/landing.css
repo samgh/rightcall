@@ -26,9 +26,9 @@ body .navbar .navbar-inner {
 	height: auto;
 }*/
 #logo {
-	width: 40%;
+	width: 30%;
 	float: none;
-	margin: 90px auto 0;
+	margin: 40px auto 0;
 }
 /*#phone-image {
 	position: absolute;
@@ -44,4 +44,13 @@ footer {
 #sign-up {
 	position: relative;
 	z-index: 1000;
+}
+.intro .p-margin {
+	margin-bottom: 5px;
+}
+#quote {
+	font-family: 'Oxygen', Helvetica, sans-serif;
+	font-size: 30px;
+	font-weight: bold;
+	text-rendering: optimizelegibility;
 }

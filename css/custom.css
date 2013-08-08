@@ -95,6 +95,7 @@ footer a:hover {
 	font-size: 20px;
 	padding: 0 15px;
 	height: 40px;
+	border-color: #888;
 }
 #email-signup-container button, #email-signup-container-2 button {
 	height: 43px;
