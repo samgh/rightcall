@@ -52,6 +52,12 @@ class Adwords(webapp2.RequestHandler):
     def get(self):
         self.redirect('/')
 
+class NewUser(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers ['Content-Type'] = 'text/html'
+        template = JINJA_ENVIRONMENT.get_template('templates/newuser.html')
+        self.response.write(template.render())
+
 class NotFoundPageHandler(webapp2.RequestHandler):
     def get(self):
         self.error(404)
@@ -61,12 +67,16 @@ class NotFoundPageHandler(webapp2.RequestHandler):
 
 application = webapp2.WSGIApplication([
     ('/', Home),
-    #('/whatis', WhatIs),
-    #('/privacy', Privacy),
-    #('/about', About),
+    ('/whatis', WhatIs),
+    ('/privacy', Privacy),
+    ('/about', About),
     ('/blog', Blog),
     ('/insert', invitations.Insert),
     ('/response', invitations.Response),
+    ('/newuser', NewUser),
+    ('/insertuser', users.Insert),
+    ('/responseuser', users.Response),
+    ('/validateuser', users.Validate),
     ('/adwords.*', Adwords),
     ('/.*', NotFoundPageHandler)
 ], debug=True)
