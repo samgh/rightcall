@@ -84,7 +84,7 @@ p a {
 	position: relative;
 }
 footer a {
-	z-index: 1000;
+	z-index: 1;
 	position: relative;
 }
 footer a:hover {
@@ -99,4 +99,33 @@ footer a:hover {
 }
 #email-signup-container button, #email-signup-container-2 button {
 	height: 43px;
+}
+#login a {
+	margin: 5px 0;
+	padding: 5px 10px;
+}
+#login-form-container {
+	display: none;
+	position: fixed;
+	z-index: 10;
+	top: 150px;
+	left: 50%;
+	margin-left: -170px;
+	background-color: rgba(50,50,50,0.98);
+	padding: 50px;
+	border-radius: 10px;
+}
+#login-form-container .controls, #login-form-container form {
+	margin: 0;
+}
+#login-background {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 5;
+	top: 0;
+	background-color: rgba(100,100,100,0.7)
 }

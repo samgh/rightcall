@@ -43,7 +43,7 @@ footer {
 }
 #sign-up {
 	position: relative;
-	z-index: 1000;
+	z-index: 1;
 }
 .intro .p-margin {
 	margin-bottom: 5px;

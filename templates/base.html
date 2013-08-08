@@ -50,6 +50,9 @@
 							<li class="{% block blog %}{% endblock %}">
 								<a href="/blog">Blog</a>
 							</li>
+							<li id="login" title="this is the title">
+								<a class="btn btn-flat" href="#">Login</a>
+							</li>
 						</ul>
 					</div><!--/.nav-collapse -->
 					{% endif %}
@@ -81,6 +84,27 @@
 				</div>
 			</div>
 		</footer>
+		<div id="login-form-container" class="pull-right">
+			<form class="form-horizontal" action="/validateuser" method="post">
+				<div class="control-group">
+					<div class="controls">
+						<input type="text" id="inputEmail" name="email" placeholder="Email">
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<input type="password" id="inputPassword" name="password" placeholder="Password">
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn">Sign in</button>
+					</div>
+				</div>
+				<label>Have an invite code?</label>
+			</form>
+		</div>
+		<div id="login-background"></div>
 
 		<script src="js/styler/jquery.min.js"></script>
 		<script src="js/bootstrap/bootstrap.min.js"></script>

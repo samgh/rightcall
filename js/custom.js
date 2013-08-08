@@ -27,6 +27,19 @@ $(function() {
 			alert('Please enter a valid email address.');
 		}
 	});
+	$('#login').click(function() {
+        if ($('#login-background').css('display') == 'none') {
+           	$('#login-background').show();
+    	    $('#login-form-container').slideDown('slow');
+        } else {
+           	$('#login-form-container').slideUp('fast');
+           	$('#login-background').hide();
+        }
+    });
+    $('#login-background').click(function() {
+       	$('#login-form-container').slideUp('fast');
+       	$('#login-background').hide();
+   	});
 });
 
 /*$(function() {
