@@ -7,7 +7,7 @@ Find cell phone plans!
 active
 {% endblock %}
 {% block content %}
-<section id="headline" class="featured">
+<section id="headline" class="featured bg-color light-grey">
 	<div id="landing-body" class="container">
 		<div class="row">
 			<div id="logo">
@@ -23,20 +23,154 @@ active
 						<div id="email-signup-container" class="input-append aligncenter control-group">
 							<input id="email-signup" class="span3" name="email-signup" type="text" placeholder="name@email.com" />
 							<input type="hidden" name="redirect" value="/">
-							<button class="btn" type="submit">Request Invite!</button>
+							<button class="btn btn-flat" type="submit">Request Invite!</button>
 						</div>
 					</fieldset>
 				</form>
 			</div>
 		</div>
-		<div id="phone-image" class="row">
-			<div class="span12 aligncenter">
-				<img id="header-image" src="img/banner2.png">
+
+	</div>
+</section>
+<section id="banner" class="content bg-color dark-grey">
+	<div class="container">
+		<img src="/img/quotes.png" alt="quotes" width="50">
+		<h2>&nbsp; &nbsp; We analyze your usage data to recommend the best cellphone plans for you.</h2>
+		<p class="pull-right">--Sam Gavis-Hughson, CEO
+	</div>
+</section>
+<section id="steps" class="content bg-color blue">
+	<div class="container">
+		<div class="row">
+			<div class="hero-unit aligncenter">
+				<h1 class="normal">3 EASY steps to know you're making the RightCall!</h1>
+				<p class="lead"></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span12">
+				<div id="carousel2" class="carousel slide custom2">
+					<ul class="carousel-indicators aligncenter row-fluid">
+						<li data-target="#carousel2" data-slide-to="0" class="active span4">
+							<div class="round bg-color blue"><span>1</span></div>
+							<div class="desc">Personal data</div>
+						</li>
+						<li data-target="#carousel2" data-slide-to="1" class="span4">
+							<div class="round bg-color blue">2</div>
+							<div class="desc">Find savings</div>
+						</li>
+						<li data-target="#carousel2" data-slide-to="2" class="span4">
+							<div class="round bg-color blue">3</div>
+							<div class="desc">Get results</div>
+						</li>
+					</ul>
+					<div class="carousel-inner clearfix">
+						<div class="active item clearfix">
+							<div class="row-fluid clearfix">
+								<div class="span7 aligncenter">
+									<img src="img/demo1.png" width="500">
+								</div>
+								<div class="span5">
+									<h2 class="normal">1. Wireless data</h2>
+									<p class="large">We collect a small amount of personal data (with your permission, of course) including talk, text, and data usage, as well as location data. This allows us to accurately compute which plans of the hundreds out there are best for your needs. We offer ways to upload data automatically as well as manual options to increase your privacy.</p>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="row-fluid clearfix">
+								<div class="span5">
+									<h2 class="normal">2. Find savings</h2>
+									<p class="large">Once you've provided the necessary information, our algorithms compare your needs to the hundreds of plans in our database to find which plans best fit your needs and will save you money. Before spending a penny, you will be able to see your potential savings at which point you can decide whether or not you would like to purchase your results.</p>
+								</div>
+								<div class="span7 aligncenter">
+									<img src="img/demo2.png" width="500">
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="row-fluid clearfix">
+								<div class="span7 aligncenter">
+									<img src="img/styler/dummy/day-gallery3.png" width="450">
+								</div>
+								<div class="span5">
+									<h2 class="normal">3. Get results</h2>
+									<p class="large">Now that you have purchased your results, you will be able to see all of the relevant information to help you pick your ideal cellphone plan. If you are still unsure, we provide live customer support to help you. We are in no way affiliated with any wireless companies so it is in our best interest to give you the best advice possible.
+								</div>
+							</div>
+						</div>
+					</div>
+					<a class="carousel-control left" href="#carousel2" data-slide="prev">&lsaquo;</a>
+					<a class="carousel-control right" href="#carousel2" data-slide="next">&rsaquo;</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
+<section id="features" class="bg-color light-grey">
+	<div class="container">
+		<div class="row">
+			<ul class="features features-list1 clearfix unstyled">
+				<li class="span6">
+					<div class="icons pull-left">
+						<img src="/img/money.png" alt="Save money on wireless plans" />
+					</div>
+					<div class="content">
+						<h3>Save Money</h3>
+						<p>We carefully examine how you use your phone to remove every bit of unnecessary waste.  With your permission, we will access your online account to gather detailed information for your recommendation.</p>
+					</div>
+				</li>
+				<li class="span6">
+					<div class="icons pull-left">
+						<img src="/img/scale.png" alt="Receive unbiased advice" />
+					</div>
+					<div class="content">
+						<h3>Unbiased Advice</h3>
+						<p>We never accept money from any carriers, so the recommendations that we provide never have an ulterior motive and you can be sure you're getting the best information.</p>
+					</div>
+				</li>
+				<li class="span6">
+					<div class="icons pull-left">
+						<img src="/img/clock.png" alt="Save time choosing wireless plans" />
+					</div>
+					<div class="content">
+						<h3>Save Time</h3>
+						<p>Just provide us with access to your wireless usage information and then sit back and relax.  We will collect all the necessary information to provide you with a recommendation.</p>
+					</div>
+				</li>
+				<li class="span6">
+					<div class="icons pull-left">
+						<img src="/img/badge.png" alt="Money-back guarantee if you don't save money" />
+					</div>
+					<div class="content">
+						<h3>100% Guarantee</h3>
+						<p>If we are unable to save you money, you won't pay a cent.  If you pay and are unsatisfied, we will refund you 100% no questions asked.</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="cta bg-color green">
+			<div class="row-fluid">
+				<div class="span8">
+					<h2 class="light">Want to find out more about how we can save you time and money? Sign up now for an invite!</h2>
+				</div>
+				<div class="span4">
+<!--					<div class="cta-action pull-right">
+						<a class="btn btn-flat btn-bg-darker btn-large" href="/features">Check out features</a>
+					</div>-->
+					<form action="/insert" method="post">
+						<fieldset class="aligncenter">
+							<div id="email-signup-container-2" class="aligncenter">
+								<input id="email-signup-2" class="span10" name="email-signup" type="text" placeholder="name@email.com" /><br />
+								<input type="hidden" name="redirect" value="/">
+								<button class="btn btn-flat" type="submit">Request Invite!</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <!--<section id="features" class="">
 	<div class="container">
 		

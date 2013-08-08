@@ -9,30 +9,26 @@ function getURLParameter(name) {
 }
 
 $(function() {
-	if (window.location.pathname == '/') {
-		onResize();
-		$(window).bind('resize', onResize);
-	};
 	$('#email-signup-container button').click(function(e) {
 		e.preventDefault();
 		if (isEmail($('#email-signup').val())) {
-			$('form').submit();
 			alert('Thank you.');
+			$('form').submit();
+		} else {
+			alert('Please enter a valid email address.');
+		}
+	});
+	$('#email-signup-container-2 button').click(function(e) {
+		e.preventDefault();
+		if (isEmail($('#email-signup-2').val())) {
+			alert('Thank you.');
+			$('form').submit();
 		} else {
 			alert('Please enter a valid email address.');
 		}
 	});
 });
 
-function onResize() {
-	var signup = $('#sign-up');
-	var footer = $('footer');
-	if((footer.position().top - (signup.position().top + signup.height())) < 300) {
-		$('#phone-image').css('display','none');
-	} else {
-		$('#phone-image').css('display','block');
-	}
-};
 /*$(function() {
 	if (window.location.pathname == '/survey1') {
 		$('.help-inline').hide();

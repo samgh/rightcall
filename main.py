@@ -98,12 +98,12 @@ class NotFoundPageHandler(webapp2.RequestHandler):
 
 application = webapp2.WSGIApplication([
     ('/', Home),
-    ('/whatis', WhatIs),
-    ('/privacy', Privacy),
-    ('/about', About),
+    #('/whatis', WhatIs),
+    #('/privacy', Privacy),
+    #('/about', About),
     ('/blog', Blog),
     ('/insert', Insert),
-    ('/response', Response),
+    #('/response', Response),
     ('/adwords.*', Adwords),
     ('/.*', NotFoundPageHandler)
 ], debug=True)

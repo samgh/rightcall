@@ -16,7 +16,8 @@ body .navbar .navbar-inner ul.nav li.active a:hover {
   color: #333;
 }
 body .navbar .navbar-inner {
-  background: #F5F5F5;
+  /*background: #F5F5F5;*/
+  background: rgba(150,150,150,.7);
 }
 html {
 	background-color: #333333;
@@ -89,11 +90,12 @@ footer a {
 footer a:hover {
 	color: inherit;
 }
-#email-signup-container input, #email-signup-container button {
+#email-signup-container input, #email-signup-container button, 
+#email-signup-container-2 input, #email-signup-container-2 button {
 	font-size: 20px;
-	padding: 0 10px;
+	padding: 0 15px;
 	height: 40px;
 }
-#email-signup-container button {
-	height: 42px;
+#email-signup-container button, #email-signup-container-2 button {
+	height: 43px;
 }
