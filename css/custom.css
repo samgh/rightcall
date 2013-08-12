@@ -127,3 +127,11 @@ footer a:hover {
 	top: 0;
 	background-color: rgba(100,100,100,0.7)
 }
+#user {
+    color: #333333;
+    font-weight: 600;
+    text-shadow: none;
+    float: none;
+    padding: 10px 15px;
+    text-decoration: none;
+}

@@ -51,9 +51,19 @@
 							<li class="{% block blog %}{% endblock %}">
 								<a href="/blog">Blog</a>
 							</li>
-							<li id="login" title="this is the title">
+							{% if not userLoggedIn %}
+							<li id="login" title="Login">
 								<a class="btn btn-flat" href="#">Login</a>
 							</li>
+							{% endif %}
+							{% if userLoggedIn %}
+							<li>
+								<div id="user">Welcome {{ username }}!</div>
+							</li>
+							<li id="login" title="Logout">
+								<a class="btn btn-flat" href="/logout">Logout</a>
+							</li>
+							{% endif %}
 						</ul>
 					</div><!--/.nav-collapse -->
 					{% endif %}
@@ -86,6 +96,7 @@
 			</div>
 		</footer>
 		<div id="login-form-container" class="pull-right" {% if not loginFailed %}style="display:none"{% endif %}>
+			{% if loginFailed %}<p class="aligncenter" style="color:red">Login failed</p>{% endif %}
 			<form class="form-horizontal" action="/login" method="post">
 				<div class="control-group">
 					<div class="controls">

@@ -1,6 +1,8 @@
 import os
 import urllib
 import time
+import logging
+from time import sleep
 
 from google.appengine.ext import ndb
 from google.appengine.api import mail
@@ -99,15 +101,29 @@ class Login(BaseHandler):
                 inDB[0].user_id = a
                 inDB[0].put()
                 self.session['id'] = a
-                self.session['logged_in'] = True
+                self.session['login_failed'] = False
+                sleep(0.1)
                 self.redirect('/')
             else:
-                self.response.write('invalid')
+                self.session['login_failed'] = True
+                self.redirect('/')
         else:
-            self.response.write('super invalid')
+            self.session['login_failed'] = True
+            self.redirect('/')
 
-def getUser(i):
+class Logout(BaseHandler):
+    def post(self):
+        query = LoginRequest.query(LoginRequest.user_id == self.session.get('id'))
+        response = query.fetch(1)
+        if response:
+            response[0].user_id = -1
+            response.put()
+        self.session['id'] = 0
+        self.redirect('/')
+
+def getFirstname(i):
     query = LoginRequest.query(LoginRequest.user_id == i)
     response = query.fetch(1)
+    logging.info(response)
     if not response: return None
-    return response[0].firstname + " " + response[0].lastname
+    return response[0].firstname

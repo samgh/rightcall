@@ -1,6 +1,7 @@
 import os
 import urllib
 import time
+import logging
 
 from google.appengine.ext import ndb
 from google.appengine.api import mail
@@ -38,11 +39,15 @@ class BaseHandler(webapp2.RequestHandler):
 
 class Home(BaseHandler):
     def get(self):
-        self.response.write("%s logged in" % users.getUser(self.session.get('id')))
+        loggedIn = False
+        firstname = users.getFirstname(self.session.get('id'))
+        if users.getFirstname(self.session.get('id')):
+            loggedIn = True
         self.session['foo'] = 'bar'
     	self.response.headers ['Content-Type'] = 'text/html'
         template = JINJA_ENVIRONMENT.get_template('templates/home.html')
-        self.response.write(template.render(loginFailed=True))
+        self.response.write(template.render(loginFailed=self.session.get('login_failed'),
+            userLoggedIn=loggedIn, username=firstname))
         self.response.write(self.session.get('foo'))
 
 class WhatIs(webapp2.RequestHandler):
@@ -105,6 +110,7 @@ application = webapp2.WSGIApplication([
     ('/insertuser', users.Insert),
     ('/responseuser', users.Response),
     ('/login', users.Login),
+    ('/logout', users.Logout),
     ('/adwords.*', Adwords),
     ('/.*', NotFoundPageHandler)
 ], config=config, debug=True)
