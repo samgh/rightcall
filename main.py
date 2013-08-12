@@ -41,14 +41,13 @@ class Home(BaseHandler):
     def get(self):
         loggedIn = False
         firstname = users.getFirstname(self.session.get('id'))
-        if users.getFirstname(self.session.get('id')):
-            loggedIn = True
-        self.session['foo'] = 'bar'
+        if firstname: loggedIn = True
+
     	self.response.headers ['Content-Type'] = 'text/html'
         template = JINJA_ENVIRONMENT.get_template('templates/home.html')
         self.response.write(template.render(loginFailed=self.session.get('login_failed'),
             userLoggedIn=loggedIn, username=firstname))
-        self.response.write(self.session.get('foo'))
+        self.session['login_failed'] = False
 
 class WhatIs(webapp2.RequestHandler):
     def get(self):
@@ -71,9 +70,15 @@ class Privacy(webapp2.RequestHandler):
 
 class Blog(BaseHandler):
     def get(self):
+        loggedIn = False
+        firstname = users.getFirstname(self.session.get('id'))
+        if firstname: loggedIn = True
+
         self.response.headers ['Content-Type'] = 'text/html'
         template = JINJA_ENVIRONMENT.get_template('templates/blog.html')
-        self.response.write(template.render())
+        self.response.write(template.render(loginFailed=self.session.get('login_failed'),
+            userLoggedIn=loggedIn, username=firstname))
+        self.session['login_failed'] = False
 
 class Adwords(webapp2.RequestHandler):
     def get(self):

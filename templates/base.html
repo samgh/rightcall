@@ -60,7 +60,7 @@
 							<li>
 								<div id="user">Welcome {{ username }}!</div>
 							</li>
-							<li id="login" title="Logout">
+							<li id="logout" title="Logout">
 								<a class="btn btn-flat" href="/logout">Logout</a>
 							</li>
 							{% endif %}
@@ -114,6 +114,7 @@
 					</div>
 				</div>
 				<label>Have an invite code?</label>
+				<input type="hidden" name="redirect" value="{% block redirect %}{% endblock %}">
 			</form>
 		</div>
 		<div id="login-background" {% if not loginFailed %}style="display:none"{% endif %}></div>

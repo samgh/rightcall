@@ -91,6 +91,7 @@ class Login(BaseHandler):
     def post(self):
         email = cgi.escape(self.request.get('email')).strip()
         password = cgi.escape(self.request.get('password'))
+        redirect = '/' + cgi.escape(self.request.get('redirect'))
 
         password_query = LoginRequest.query(LoginRequest.email == email)
         inDB = password_query.fetch(1)
@@ -102,23 +103,24 @@ class Login(BaseHandler):
                 inDB[0].put()
                 self.session['id'] = a
                 self.session['login_failed'] = False
-                sleep(0.1)
-                self.redirect('/')
+                sleep(0.5)
+                logging.info(redirect)
+                self.redirect(redirect)
             else:
                 self.session['login_failed'] = True
-                self.redirect('/')
+                self.redirect(redirect)
         else:
             self.session['login_failed'] = True
-            self.redirect('/')
+            self.redirect(redirect)
 
 class Logout(BaseHandler):
-    def post(self):
+    def get(self):
         query = LoginRequest.query(LoginRequest.user_id == self.session.get('id'))
         response = query.fetch(1)
         if response:
-            response[0].user_id = -1
-            response.put()
-        self.session['id'] = 0
+            response[0].user_id = '-1'
+            response[0].put()
+        self.session['id'] = '0'
         self.redirect('/')
 
 def getFirstname(i):

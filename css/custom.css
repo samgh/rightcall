@@ -100,7 +100,7 @@ footer a:hover {
 #email-signup-container button, #email-signup-container-2 button {
 	height: 43px;
 }
-#login a {
+#login a, #logout a {
 	margin: 5px 0;
 	padding: 5px 10px;
 }
