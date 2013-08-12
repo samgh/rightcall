@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="Make the RightCall when choosing a cell phone plan. There are so many options, why not let us do the hard work.">
 		<meta name="author" content="Sam Gavis-Hughson, RightCall LLC, 2013">
+		<meta http-equiv="pragma" content="no-cache">
 
 		<!-- Custom Fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300,500' rel='stylesheet' type='text/css'>
@@ -84,8 +85,8 @@
 				</div>
 			</div>
 		</footer>
-		<div id="login-form-container" class="pull-right">
-			<form class="form-horizontal" action="/validateuser" method="post">
+		<div id="login-form-container" class="pull-right" {% if not loginFailed %}style="display:none"{% endif %}>
+			<form class="form-horizontal" action="/login" method="post">
 				<div class="control-group">
 					<div class="controls">
 						<input type="text" id="inputEmail" name="email" placeholder="Email">
@@ -104,7 +105,7 @@
 				<label>Have an invite code?</label>
 			</form>
 		</div>
-		<div id="login-background"></div>
+		<div id="login-background" {% if not loginFailed %}style="display:none"{% endif %}></div>
 
 		<script src="js/styler/jquery.min.js"></script>
 		<script src="js/bootstrap/bootstrap.min.js"></script>

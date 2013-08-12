@@ -9,9 +9,11 @@ import jinja2
 import webapp2
 from webapp2_extras import sessions
 import cgi
+import uuid
 
 import invitations
 import users
+import basehandler
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -34,15 +36,13 @@ class BaseHandler(webapp2.RequestHandler):
         # Returns a session using the default cookie key.
         return self.session_store.get_session()
 
-class Home(webapp2.RequestHandler):
+class Home(BaseHandler):
     def get(self):
-        #self.session['foo'] = 'bar';
-
+        self.response.write("%s logged in" % users.getUser(self.session.get('id')))
+        self.session['foo'] = 'bar'
     	self.response.headers ['Content-Type'] = 'text/html'
         template = JINJA_ENVIRONMENT.get_template('templates/home.html')
-        self.response.write(template.render())
-
-    #def post(self):
+        self.response.write(template.render(loginFailed=True))
         self.response.write(self.session.get('foo'))
 
 class WhatIs(webapp2.RequestHandler):
@@ -64,7 +64,7 @@ class Privacy(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/privacy.html')
         self.response.write(template.render())
 
-class Blog(webapp2.RequestHandler):
+class Blog(BaseHandler):
     def get(self):
         self.response.headers ['Content-Type'] = 'text/html'
         template = JINJA_ENVIRONMENT.get_template('templates/blog.html')
@@ -87,6 +87,12 @@ class NotFoundPageHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/error.html')
         self.response.write(template.render())
 
+config = {}
+config['webapp2_extras.sessions'] = {
+    'secret_key': uuid.uuid4().hex,
+    'session_max_age': 60 * 60 * 24
+}
+
 application = webapp2.WSGIApplication([
     ('/', Home),
     ('/whatis', WhatIs),
@@ -98,7 +104,7 @@ application = webapp2.WSGIApplication([
     ('/newuser', NewUser),
     ('/insertuser', users.Insert),
     ('/responseuser', users.Response),
-    ('/validateuser', users.Validate),
+    ('/login', users.Login),
     ('/adwords.*', Adwords),
     ('/.*', NotFoundPageHandler)
-], debug=True)
+], config=config, debug=True)
