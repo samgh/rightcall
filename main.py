@@ -118,4 +118,4 @@ application = webapp2.WSGIApplication([
     ('/logout', users.Logout),
     ('/adwords.*', Adwords),
     ('/.*', NotFoundPageHandler)
-], config=config, debug=True)
+], config=config, debug=False)
