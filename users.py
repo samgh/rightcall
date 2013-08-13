@@ -118,7 +118,7 @@ class Logout(BaseHandler):
         query = LoginRequest.query(LoginRequest.user_id == self.session.get('id'))
         response = query.fetch(1)
         if response:
-            response[0].user_id = '-1'
+            response[0].user_id = null
             response[0].put()
         self.session['id'] = '0'
         self.redirect('/')
