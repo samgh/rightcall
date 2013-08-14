@@ -105,17 +105,17 @@ config['webapp2_extras.sessions'] = {
 
 application = webapp2.WSGIApplication([
     ('/', Home),
-    ('/whatis', WhatIs),
-    ('/privacy', Privacy),
-    ('/about', About),
+#    ('/whatis', WhatIs),
+#    ('/privacy', Privacy),
+#    ('/about', About),
     ('/blog', Blog),
     ('/insert', invitations.Insert),
-    ('/response', invitations.Response),
-    ('/newuser', NewUser),
+#    ('/response', invitations.Response),
+#    ('/newuser', NewUser),
     ('/insertuser', users.Insert),
-    ('/responseuser', users.Response),
+#    ('/responseuser', users.Response),
     ('/login', users.Login),
     ('/logout', users.Logout),
     ('/adwords.*', Adwords),
     ('/.*', NotFoundPageHandler)
-], config=config, debug=True)
+], config=config, debug=False)
