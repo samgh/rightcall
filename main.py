@@ -65,6 +65,15 @@ class InvitationResponse(BaseHandler):
             self.response.write('%s<br /><br />' % email.date)
         self.response.write('</body></html>')
 
+class NewUserInsert(BaseHandler):
+    def post(self):
+        firstname = cgi.escape(self.request.get('firstname')).strip()
+        lastname = cgi.escape(self.request.get('lastname')).strip()
+        email = cgi.escape(self.request.get('email')).strip()
+        password = cgi.escape(self.request.get('password'))
+        users.CreateNewUser(firstname, lastname, email, password)
+        self.redirect('/')
+
 class WhatIs(webapp2.RequestHandler):
     def get(self):
         self.response.headers ['Content-Type'] = 'text/html'
@@ -127,7 +136,7 @@ application = webapp2.WSGIApplication([
     ('/invitationinsert', InvitationInsert),
     ('/invitationresponse', InvitationResponse),
     ('/newuser', NewUser),
-    ('/insertuser', users.Insert),
+    ('/newuserinsert', NewUserInsert),
     ('/responseuser', users.Response),
     ('/login', users.Login),
     ('/logout', users.Logout),

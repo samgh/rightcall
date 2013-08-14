@@ -37,13 +37,42 @@ class BaseHandler(webapp2.RequestHandler):
 def db_key(db_name=USERS_DB_NAME):
     return ndb.Key('Insert', db_name)
 
-class LoginRequest(ndb.Model):
+class UserRequest(ndb.Model):
     firstname = ndb.StringProperty()
     lastname = ndb.StringProperty()
     email = ndb.StringProperty()
     salt = ndb.BlobProperty()
     password = ndb.BlobProperty()
     user_id = ndb.StringProperty()
+
+def UserInDB(email):
+    query = UserRequest.query(UserRequest.email == email)
+    inDB = query.fetch()
+    if inDB: return inDB
+    return False
+
+def CreateNewUser(firstname, lastname, email, password, user_id='-1'):
+    userRequest = UserInDB(email)
+    if not userRequest:
+        salt = uuid.uuid4().hex
+        password = hashlib.sha256(password + salt).hexdigest()
+        userRequest = UserRequest(firstname=firstname, lastname=lastname,
+            email=email, password=password, salt=salt, user_id=user_id)
+        userRequest.put()
+        return True
+    return False
+
+def ValidateUser(email, password):
+    userRequest = UserInDB(email)
+    if userRequest:
+        if (userRequest[0].password == hashlib.sha256(password + user[0].salt)):
+            return True
+    return False
+
+def GetUserByID(user_id):
+    query = UserRequest.query(UserRequest.user_id == user_id)
+    return query.fetch()
+    
 
 class Insert(webapp2.RequestHandler):
     def post(self):
@@ -56,10 +85,10 @@ class Insert(webapp2.RequestHandler):
         saltypass = cgi.escape(self.request.get('password')) + salt
         password = hashlib.sha256(saltypass).hexdigest()
 
-        query = LoginRequest.query(LoginRequest.email == email)
+        query = UserRequest.query(UserRequest.email == email)
         inDB = query.fetch(1)
         if not inDB:
-            loginRequest = LoginRequest(parent=db_key(db_name))
+            loginRequest = UserRequest(parent=db_key(db_name))
             loginRequest.firstname = firstname
             loginRequest.lastname = lastname
             loginRequest.email = email
@@ -75,7 +104,7 @@ class Response(webapp2.RequestHandler):
         self.response.write('<html><body>')
         db_name = self.request.get('db_name', USERS_DB_NAME)
 
-        emails_query = LoginRequest.query(ancestor=db_key(db_name))
+        emails_query = UserRequest.query(ancestor=db_key(db_name))
         emails = emails_query.fetch(100)
 
         for message in emails:
@@ -92,7 +121,7 @@ class Login(BaseHandler):
         password = cgi.escape(self.request.get('password'))
         redirect = '/' + cgi.escape(self.request.get('redirect'))
 
-        password_query = LoginRequest.query(LoginRequest.email == email)
+        password_query = UserRequest.query(UserRequest.email == email)
         inDB = password_query.fetch(1)
         if inDB:
             password = hashlib.sha256(password + inDB[0].salt).hexdigest()
@@ -114,7 +143,7 @@ class Login(BaseHandler):
 
 class Logout(BaseHandler):
     def get(self):
-        query = LoginRequest.query(LoginRequest.user_id == self.session.get('id'))
+        query = UserRequest.query(UserRequest.user_id == self.session.get('id'))
         response = query.fetch(1)
         if response:
             response[0].user_id = '-1'
@@ -123,7 +152,7 @@ class Logout(BaseHandler):
         self.redirect('/')
 
 def getFirstname(i):
-    query = LoginRequest.query(LoginRequest.user_id == i)
+    query = UserRequest.query(UserRequest.user_id == i)
     response = query.fetch(1)
     logging.info(response)
     if not response: return None
