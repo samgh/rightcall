@@ -65,13 +65,22 @@ def CreateNewUser(firstname, lastname, email, password, user_id='-1'):
 def ValidateUser(email, password):
     userRequest = UserInDB(email)
     if userRequest:
-        if (userRequest[0].password == hashlib.sha256(password + user[0].salt)):
+        if (userRequest[0].password == 
+            hashlib.sha256(password + userRequest[0].salt).hexdigest()):
             return True
     return False
 
 def GetUserByID(user_id):
     query = UserRequest.query(UserRequest.user_id == user_id)
     return query.fetch()
+
+def SetUserID(email):
+    userRequest = UserInDB(email)
+    if userRequest:
+        userRequest[0].user_id = uuid.uuid4().hex
+        userRequest[0].put()
+        return userRequest[0].user_id
+    return False
     
 
 class Insert(webapp2.RequestHandler):
@@ -104,9 +113,10 @@ class Response(webapp2.RequestHandler):
         self.response.write('<html><body>')
         db_name = self.request.get('db_name', USERS_DB_NAME)
 
-        emails_query = UserRequest.query(ancestor=db_key(db_name))
-        emails = emails_query.fetch(100)
+        emails_query = UserRequest.query()#ancestor=db_key(db_name))
+        emails = emails_query.fetch()
 
+        logging.info(len(emails))
         for message in emails:
             self.response.write(message.firstname)
             self.response.write('&nbsp%s' % message.lastname)

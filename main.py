@@ -1,6 +1,7 @@
 import os
 import urllib
 import time
+from time import sleep
 import logging
 
 from google.appengine.ext import ndb
@@ -46,6 +47,9 @@ class Home(BaseHandler):
         self.response.write(template.render(loginFailed=self.session.get('login_failed'),
             userLoggedIn=loggedIn, username=firstname))
         self.session['login_failed'] = False
+        a = users.SetUserID('sam@sam.sam')
+        sleep(1)
+        logging.info(users.GetUserByID(a))
 
 class InvitationInsert(BaseHandler):
     def post(self):
