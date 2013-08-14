@@ -71,7 +71,6 @@ class WhatIs(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/whatis.html')
         self.response.write(template.render())
 
-
 class About(webapp2.RequestHandler):
     def get(self):
     	self.response.headers ['Content-Type'] = 'text/html'
