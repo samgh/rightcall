@@ -49,6 +49,7 @@ class Home(BaseHandler):
             userLoggedIn=loggedIn, username=firstname))
         self.session['login_failed'] = False
 
+
 class WhatIs(webapp2.RequestHandler):
     def get(self):
         self.response.headers ['Content-Type'] = 'text/html'
@@ -109,7 +110,7 @@ application = webapp2.WSGIApplication([
     ('/privacy', Privacy),
     ('/about', About),
     ('/blog', Blog),
-    ('/insert', invitations.Insert),
+#    ('/insert', invitations.Insert),
     ('/response', invitations.Response),
     ('/newuser', NewUser),
     ('/insertuser', users.Insert),

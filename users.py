@@ -12,7 +12,6 @@ import jinja2
 import webapp2
 import cgi
 
-
 import hashlib
 import uuid
 
