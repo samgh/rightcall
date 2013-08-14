@@ -1,16 +1,8 @@
-import os
-import urllib
 import time
-
 from google.appengine.ext import ndb
-from google.appengine.api import mail
-
-import jinja2
-import webapp2
-import cgi
 import logging
 
-INVITATIONS_DB_NAME = 'invitations_db'
+#INVITATIONS_DB_NAME = 'invitations_db'
 
 #def db_key(db_name=INVITATIONS_DB_NAME):
 #    return ndb.Key('Insert', db_name)
@@ -79,8 +71,7 @@ def SetAllEmailsNotSent():
     query = InvitationRequest.query()
     emails = query.fetch()
     for email in emails:
-        email.emailSent = False
-        email.put()
+        EmailNotSent(email.email)
 
 #class Insert(webapp2.RequestHandler):
 #    def post(self):
@@ -99,17 +90,17 @@ def SetAllEmailsNotSent():
 #           self.redirect(redirect)
 
 
-class Response(webapp2.RequestHandler):
-    def get(self):
-        self.response.write('<html><body>')
-        db_name = self.request.get('db_name', INVITATIONS_DB_NAME)
-
-        emails_query = InvitationRequest.query().order(-InvitationRequest.date)#ancestor=db_key(db_name)).order(-InvitationRequest.date)
-        emails = emails_query.fetch(100)
-
-        for message in emails:
-            self.response.write(cgi.escape(message.email))
-            self.response.write('<br />%s<br />' % message.date)
-            self.response.write('%s<br /><br />' % message.emailSent)
+#class Response(webapp2.RequestHandler):
+#    def get(self):
+#        self.response.write('<html><body>')
+#        db_name = self.request.get('db_name', INVITATIONS_DB_NAME)
+#
+#        emails_query = InvitationRequest.query().order(-InvitationRequest.date)#ancestor=db_key(db_name)).order(-InvitationRequest.date)
+#        emails = emails_query.fetch(100)
+#
+#        for message in emails:
+#            self.response.write(cgi.escape(message.email))
+#            self.response.write('<br />%s<br />' % message.date)
+#            self.response.write('%s<br /><br />' % message.emailSent)
 #
 #        #self.redirect('/')

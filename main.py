@@ -24,14 +24,12 @@ class BaseHandler(webapp2.RequestHandler):
     def dispatch(self):
         # Get a session store for this request.
         self.session_store = sessions.get_store(request=self.request)
-
         try:
             # Dispatch the request.
             webapp2.RequestHandler.dispatch(self)
         finally:
             # Save all sessions.
             self.session_store.save_sessions(self.response)
-
     @webapp2.cached_property
     def session(self):
         # Returns a session using the default cookie key.
@@ -49,6 +47,23 @@ class Home(BaseHandler):
             userLoggedIn=loggedIn, username=firstname))
         self.session['login_failed'] = False
 
+class InvitationInsert(BaseHandler):
+    def post(self):
+        email = cgi.escape(self.request.get('email-signup')).strip()
+        redirect = cgi.escape(self.request.get('redirect'))
+        success = invitations.InsertEmail(email)
+        self.session['invitation_success'] = success
+        self.redirect(redirect)
+
+class InvitationResponse(BaseHandler):
+    def get(self):
+        emails = invitations.AllEmails()
+        self.response.write('<html><body>')
+        for email in emails:
+            self.response.write('%s<br />' % email.email)
+            self.response.write('%s<br />' % email.emailSent)
+            self.response.write('%s<br /><br />' % email.date)
+        self.response.write('</body></html>')
 
 class WhatIs(webapp2.RequestHandler):
     def get(self):
@@ -110,8 +125,8 @@ application = webapp2.WSGIApplication([
     ('/privacy', Privacy),
     ('/about', About),
     ('/blog', Blog),
-#    ('/insert', invitations.Insert),
-    ('/response', invitations.Response),
+    ('/invitationinsert', InvitationInsert),
+    ('/invitationresponse', InvitationResponse),
     ('/newuser', NewUser),
     ('/insertuser', users.Insert),
     ('/responseuser', users.Response),
