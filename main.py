@@ -51,6 +51,14 @@ class Home(BaseHandler):
         self.response.write(template.render(loginFailed=self.session.get('login_failed'),
             userLoggedIn=loggedIn, username=firstname))
         self.session['login_failed'] = False
+        invitations.SetAllEmailsNotSent()
+
+
+#        allusers = users.GetAllUsers()
+#        for user in allusers:
+#            #users.SetPassword(user.email, '1234')
+#            users.SetLevel(user.email, 'Basic')
+#        users.SetLevel(users.UserInDB('sam@rightcall.co')[0].email, 'Admin')
 
 class InvitationInsert(BaseHandler):
     def post(self):
@@ -58,6 +66,57 @@ class InvitationInsert(BaseHandler):
 #        redirect = cgi.escape(self.request.get('redirect'))
         success = invitations.InsertEmail(email)
         self.session['invitation_success'] = success
+
+        emails = invitations.EmailsNotSent()
+        for email in emails:
+            if email.email:
+                mail.send_mail(sender="Sam Gavis-Hughson <rightcallinfo@gmail.com>",
+                to=email.email,
+                subject="Welcome to RightCall!",
+                body="""
+                    Welcome, and thank you so much for signing up for RightCall!
+
+                    We are currently working out the final bugs, but when we are ready, 
+                    you will be the first to know.  Keep your eyes peeled for an 
+                    invite code and make sure that you whitelist all emails from 
+                    rightcallinfo@gmail.com.
+
+                    While you're waiting, make sure to check us out on Facebook 
+                    (SamRightCall) and Twitter (@SamRightCall).  We would love to 
+                    connect with you!  Also make sure to <strong>tell your friends 
+                    about RightCall.
+
+                    We look forwards to getting to know you and helping you out.  If you 
+                    have any comments, questions, or just want to say hi, don't hesitate 
+                    to email me at sam@rightcall.co.
+
+                    Sam Gavis-Hughson
+                    Founder and CEO, RightCall LLC
+                """,
+                html="""
+                <html>
+                    <body>
+                        <p>Welcome, and thank you so much for signing up for 
+                        <a href="http://www.rightcall.co" title="RightCall">RightCall</a>!</p>
+                        <p>We are currently working out the final bugs, but when we are ready, 
+                        you will be the first to know.  Keep your eyes peeled for an 
+                        <strong>invite code</strong> and make sure that you whitelist all emails 
+                        from <a href="mailto:rightcallinfo@gmail.com">rightcallinfo@gmail.com</a>.</p>
+                        <p>While you're waiting, make sure to check us out on 
+                        <a href="http://www.facebook.com/samrightcall">Facebook</a> and 
+                        <a href="http://www.twitter.com/samrightcall">Twitter</a>.  We would 
+                        love to connect with you!  Also make sure to <strong>tell your friends 
+                        about RightCall.</strong></p>
+                        <p>We look forwards to getting to know you and helping you out.  If you 
+                        have any comments, questions, or just want to say hi, don't hesitate to 
+                        email me at <a href="mailto:sam@rightcall.co">sam@rightcall.co</a>.</p>
+                        Sam Gavis-Hughson
+                        <br />
+                        Founder and CEO, RightCall LLC
+                    </body>
+                </html>
+                """)
+            invitations.EmailSent(email.email)
 #        self.redirect(redirect)
         self.redirect('/thankyou')
 
@@ -221,4 +280,4 @@ application = webapp2.WSGIApplication([
     ('/logout', UserLogout),
     ('/adwords.*', Adwords),
     ('/.*', NotFoundPageHandler)
-], config=config, debug=True)
+], config=config, debug=False)
