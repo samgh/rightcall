@@ -59,7 +59,13 @@ class Home(BaseHandler):
             userLoggedIn=loggedIn, username=firstname))
         self.session['login_failed'] = False
 
-        #a = users.SetUserID('fred')
+        users.UserInDB('fred')
+        users.CreateNewUser('firstname', 'lastname', 'email', 'password')
+        users.ValidateUser('fred','1234')
+        a = users.SetUserID('fred')
+        users.GetUserByID(a)
+        users.UnsetUserID('fred')
+        users.GetAllUsers()
         #sleep(1)
         #logging.info(users.GetUserByID(a))
         #logging.info(users.UnsetUserID('sam@sam.sam'))
@@ -197,8 +203,7 @@ application = webapp2.WSGIApplication([
     ('/invitationresponse', InvitationResponse),
     ('/newuser', NewUser),
     ('/newuserinsert', NewUserInsert),
-    ('/responseuser', users.Response),
-    ('/responseuser2', UserResponse),
+    ('/responseuser', UserResponse),
     ('/login', UserLogin),
     ('/logout', UserLogout),
     ('/adwords.*', Adwords),
