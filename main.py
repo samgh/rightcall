@@ -38,11 +38,6 @@ class BaseHandler(webapp2.RequestHandler):
 
 class Home(BaseHandler):
     def get(self):
-#        loggedIn = False
-#        firstname = users.getFirstname(self.session.get('id'))
-#        if firstname: loggedIn = True
-        logging.info('User ID')
-        logging.info(self.session.get('user_id'))
         currentUser = users.GetUserByID(self.session.get('user_id'))
         if currentUser:
             loggedIn = True
@@ -51,42 +46,43 @@ class Home(BaseHandler):
             loggedIn = False
             firstname = ''
 
-        logging.info(currentUser)
-        logging.info(loggedIn)
     	self.response.headers ['Content-Type'] = 'text/html'
         template = JINJA_ENVIRONMENT.get_template('templates/home.html')
         self.response.write(template.render(loginFailed=self.session.get('login_failed'),
             userLoggedIn=loggedIn, username=firstname))
         self.session['login_failed'] = False
 
-        users.UserInDB('fred')
-        users.CreateNewUser('firstname', 'lastname', 'email', 'password')
-        users.ValidateUser('fred','1234')
-        a = users.SetUserID('fred')
-        users.GetUserByID(a)
-        users.UnsetUserID('fred')
-        users.GetAllUsers()
-        #sleep(1)
-        #logging.info(users.GetUserByID(a))
-        #logging.info(users.UnsetUserID('sam@sam.sam'))
-
 class InvitationInsert(BaseHandler):
     def post(self):
         email = cgi.escape(self.request.get('email-signup')).strip()
-        redirect = cgi.escape(self.request.get('redirect'))
+#        redirect = cgi.escape(self.request.get('redirect'))
         success = invitations.InsertEmail(email)
         self.session['invitation_success'] = success
-        self.redirect(redirect)
+#        self.redirect(redirect)
+        self.redirect('/thankyou')
 
 class InvitationResponse(BaseHandler):
     def get(self):
-        emails = invitations.AllEmails()
-        self.response.write('<html><body>')
-        for email in emails:
-            self.response.write('%s<br />' % email.email)
-            self.response.write('%s<br />' % email.emailSent)
-            self.response.write('%s<br /><br />' % email.date)
-        self.response.write('</body></html>')
+        currentUser = users.GetUserByID(self.session.get('user_id'))
+        if currentUser and currentUser[0].user_level == 'Admin': 
+            emails = invitations.AllEmails()
+            self.response.write('<html><body>')
+            for email in emails:
+                self.response.write('%s<br />' % email.email)
+                self.response.write('%s<br />' % email.emailSent)
+                self.response.write('%s<br /><br />' % email.date)
+            self.response.write('</body></html>')
+        else: 
+            self.error(404)
+            self.response.headers ['Content-Type'] = 'text/html'
+            template = JINJA_ENVIRONMENT.get_template('templates/error.html')
+            self.response.write(template.render())
+
+class ThankYou(webapp2.RequestHandler):
+    def get(self):
+        self.response.headers ['Content-Type'] = 'text/html'
+        template = JINJA_ENVIRONMENT.get_template('templates/thankyou.html')
+        self.response.write(template.render())
 
 class NewUserInsert(BaseHandler):
     def post(self):
@@ -94,21 +90,30 @@ class NewUserInsert(BaseHandler):
         lastname = cgi.escape(self.request.get('lastname')).strip()
         email = cgi.escape(self.request.get('email')).strip()
         password = cgi.escape(self.request.get('password'))
-        users.CreateNewUser(firstname, lastname, email, password)
+        level = cgi.escape(self.request.get('level'))
+        users.CreateNewUser(firstname, lastname, email, password, user_level=level)
         self.redirect('/')
 
 class UserResponse(BaseHandler):
     def get(self):
-        AllUsers = users.GetAllUsers()
-        self.response.write('<html><body>')
-        for user in AllUsers:
-            self.response.write('%s ' % user.firstname)
-            self.response.write('%s<br />' % user.lastname)
-            self.response.write('%s<br />' % user.email)
-            self.response.write('%s ' % user.password)
-            self.response.write('%s<br />' % user.salt)
-            self.response.write('%s<br /><br />' % user.user_id)
-        self.response.write('</body></html>')
+        currentUser = users.GetUserByID(self.session.get('user_id'))
+        if currentUser and currentUser[0].user_level == 'Admin': 
+            AllUsers = users.GetAllUsers()
+            self.response.write('<html><body>')
+            for user in AllUsers:
+                self.response.write('%s ' % user.firstname)
+                self.response.write('%s<br />' % user.lastname)
+                self.response.write('%s<br />' % user.email)
+                self.response.write('%s ' % user.password)
+                self.response.write('%s<br />' % user.salt)
+                self.response.write('%s<br />' % user.user_id)
+                self.response.write('%s<br /><br />' % user.user_level)
+            self.response.write('</body></html>')
+        else: 
+            self.error(404)
+            self.response.headers ['Content-Type'] = 'text/html'
+            template = JINJA_ENVIRONMENT.get_template('templates/error.html')
+            self.response.write(template.render())
 
 class UserLogin(BaseHandler):
     def post(self):
@@ -174,11 +179,18 @@ class Adwords(webapp2.RequestHandler):
     def get(self):
         self.redirect('/')
 
-class NewUser(webapp2.RequestHandler):
+class NewUser(BaseHandler):
     def get(self):
-        self.response.headers ['Content-Type'] = 'text/html'
-        template = JINJA_ENVIRONMENT.get_template('templates/newuser.html')
-        self.response.write(template.render())
+        currentUser = users.GetUserByID(self.session.get('user_id'))
+        if currentUser and currentUser[0].user_level == 'Admin': 
+            self.response.headers ['Content-Type'] = 'text/html'
+            template = JINJA_ENVIRONMENT.get_template('templates/newuser.html')
+            self.response.write(template.render())
+        else: 
+            self.error(404)
+            self.response.headers ['Content-Type'] = 'text/html'
+            template = JINJA_ENVIRONMENT.get_template('templates/error.html')
+            self.response.write(template.render())
 
 class NotFoundPageHandler(webapp2.RequestHandler):
     def get(self):
@@ -195,15 +207,16 @@ config['webapp2_extras.sessions'] = {
 
 application = webapp2.WSGIApplication([
     ('/', Home),
-    ('/whatis', WhatIs),
-    ('/privacy', Privacy),
-    ('/about', About),
+#    ('/whatis', WhatIs),
+#    ('/privacy', Privacy),
+#    ('/about', About),
     ('/blog', Blog),
     ('/invitationinsert', InvitationInsert),
     ('/invitationresponse', InvitationResponse),
+    ('/thankyou', ThankYou),
     ('/newuser', NewUser),
     ('/newuserinsert', NewUserInsert),
-    ('/responseuser', UserResponse),
+    ('/userresponse', UserResponse),
     ('/login', UserLogin),
     ('/logout', UserLogout),
     ('/adwords.*', Adwords),

@@ -18,6 +18,7 @@ class UserRequest(ndb.Model):
     salt = ndb.BlobProperty()
     password = ndb.BlobProperty()
     user_id = ndb.StringProperty()
+    user_level = ndb.StringProperty()
 
 def UserInDB(email):
     query = UserRequest.query(UserRequest.email == email)
@@ -25,13 +26,14 @@ def UserInDB(email):
     if inDB: return inDB
     return False
 
-def CreateNewUser(firstname, lastname, email, password, user_id='-1'):
+def CreateNewUser(firstname, lastname, email, password, user_id='-1', user_level='Basic'):
     userRequest = UserInDB(email)
     if not userRequest:
         salt = uuid.uuid4().hex
         password = hashlib.sha256(password + salt).hexdigest()
         userRequest = UserRequest(firstname=firstname, lastname=lastname,
-            email=email, password=password, salt=salt, user_id=user_id)
+            email=email, password=password, salt=salt, user_id=user_id, 
+            user_level=user_level)
         userRequest.put()
         return True
     return False
@@ -67,3 +69,21 @@ def UnsetUserID(email):
 def GetAllUsers():
     query = UserRequest.query()
     return query.fetch()
+
+def SetPassword(email, password):
+    userRequest = UserInDB(email)
+    if userRequest:
+        salt = uuid.uuid4().hex
+        userRequest[0].password = hashlib.sha256(password + salt).hexdigest()
+        userRequest[0].salt = salt
+        userRequest[0].put()
+        return True
+    return False
+
+def SetLevel(email, level):
+    userRequest = UserInDB(email)
+    if userRequest:
+        userRequest[0].user_level = level
+        userRequest[0].put()
+        return True
+    return False
