@@ -81,7 +81,18 @@ def SetUserID(email):
         userRequest[0].put()
         return userRequest[0].user_id
     return False
-    
+
+def UnsetUserID(email):
+    userRequest = UserInDB(email)
+    if userRequest:
+        userRequest[0].user_id = '-1'
+        userRequest[0].put()
+        return True
+    return False
+
+def GetAllUsers():
+    query = UserRequest.query()
+    return query.fetch()
 
 class Insert(webapp2.RequestHandler):
     def post(self):

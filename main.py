@@ -38,18 +38,31 @@ class BaseHandler(webapp2.RequestHandler):
 
 class Home(BaseHandler):
     def get(self):
-        loggedIn = False
-        firstname = users.getFirstname(self.session.get('id'))
-        if firstname: loggedIn = True
+#        loggedIn = False
+#        firstname = users.getFirstname(self.session.get('id'))
+#        if firstname: loggedIn = True
+        logging.info('User ID')
+        logging.info(self.session.get('user_id'))
+        currentUser = users.GetUserByID(self.session.get('user_id'))
+        if currentUser:
+            loggedIn = True
+            firstname = currentUser[0].firstname
+        else:
+            loggedIn = False
+            firstname = ''
 
+        logging.info(currentUser)
+        logging.info(loggedIn)
     	self.response.headers ['Content-Type'] = 'text/html'
         template = JINJA_ENVIRONMENT.get_template('templates/home.html')
         self.response.write(template.render(loginFailed=self.session.get('login_failed'),
             userLoggedIn=loggedIn, username=firstname))
         self.session['login_failed'] = False
-        a = users.SetUserID('sam@sam.sam')
-        sleep(1)
-        logging.info(users.GetUserByID(a))
+
+        #a = users.SetUserID('fred')
+        #sleep(1)
+        #logging.info(users.GetUserByID(a))
+        #logging.info(users.UnsetUserID('sam@sam.sam'))
 
 class InvitationInsert(BaseHandler):
     def post(self):
@@ -78,6 +91,44 @@ class NewUserInsert(BaseHandler):
         users.CreateNewUser(firstname, lastname, email, password)
         self.redirect('/')
 
+class UserResponse(BaseHandler):
+    def get(self):
+        AllUsers = users.GetAllUsers()
+        self.response.write('<html><body>')
+        for user in AllUsers:
+            self.response.write('%s ' % user.firstname)
+            self.response.write('%s<br />' % user.lastname)
+            self.response.write('%s<br />' % user.email)
+            self.response.write('%s ' % user.password)
+            self.response.write('%s<br />' % user.salt)
+            self.response.write('%s<br /><br />' % user.user_id)
+        self.response.write('</body></html>')
+
+class UserLogin(BaseHandler):
+    def post(self):
+        email = cgi.escape(self.request.get('email')).strip()
+        password = cgi.escape(self.request.get('password'))
+        redirect = cgi.escape(self.request.get('redirect'))
+        if users.ValidateUser(email, password):
+            self.session['user_id'] = users.SetUserID(email)
+            self.session['login_failed'] = False
+            sleep(0.5)
+            self.redirect(redirect)
+        else:
+            self.session['login_failed'] = True
+            self.redirect(redirect)
+
+class UserLogout(BaseHandler):
+    def get(self):
+        currentUser = users.GetUserByID(self.session.get('user_id'))
+        logging.info('test1')
+        if currentUser:
+            logging.info('test2')
+            users.UnsetUserID(currentUser[0].email)
+            self.session['user_id'] = '0'
+            self.redirect('/')
+        self.redirect('/')
+
 class WhatIs(webapp2.RequestHandler):
     def get(self):
         self.response.headers ['Content-Type'] = 'text/html'
@@ -98,9 +149,14 @@ class Privacy(webapp2.RequestHandler):
 
 class Blog(BaseHandler):
     def get(self):
-        loggedIn = False
-        firstname = users.getFirstname(self.session.get('id'))
-        if firstname: loggedIn = True
+        logging.info(self.session.get('user_id'))
+        currentUser = users.GetUserByID(self.session.get('user_id'))
+        if currentUser:
+            loggedIn = True
+            firstname = currentUser[0].firstname
+        else:
+            loggedIn = False
+            firstname = ''
 
         self.response.headers ['Content-Type'] = 'text/html'
         template = JINJA_ENVIRONMENT.get_template('templates/blog.html')
@@ -142,8 +198,9 @@ application = webapp2.WSGIApplication([
     ('/newuser', NewUser),
     ('/newuserinsert', NewUserInsert),
     ('/responseuser', users.Response),
-    ('/login', users.Login),
-    ('/logout', users.Logout),
+    ('/responseuser2', UserResponse),
+    ('/login', UserLogin),
+    ('/logout', UserLogout),
     ('/adwords.*', Adwords),
     ('/.*', NotFoundPageHandler)
 ], config=config, debug=True)
