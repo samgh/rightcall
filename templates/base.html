@@ -114,7 +114,7 @@
 					</div>
 				</div>
 				<label>Have an invite code?</label>
-				<input type="hidden" name="redirect" value="{% block redirect %}{% endblock %}">
+				<input type="hidden" name="redirect" value="/{% block redirect %}{% endblock %}">
 			</form>
 		</div>
 		<div id="login-background" {% if not loginFailed %}style="display:none"{% endif %}></div>

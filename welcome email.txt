@@ -1,8 +1,8 @@
 <html>
 <body>
 <p>Welcome, and thank you so much for signing up for <a href="http://www.rightcall.co" title="RightCall">RightCall</a>!</p>
-<p>We are currently working out the final bugs, but when we are ready, you will be the first to know.  Keep your eyes peeled for an invite code and make sure that you whitelist all emails from <a href="mailto:rightcallinfo@gmail.com>rightcallinfo@gmail.com</a>.</p>
-<p>While you're waiting, make sure to check us out on <a href="http://www.facebook.com/samrightcall">Facebook</a> and <a href="http://www.twitter.com/samrightcall">Twitter</a>.  We would love to connect with you!  Also make sure to tell your friends about RightCall.</p>
+<p>We are currently working out the final bugs, but when we are ready, you will be the first to know.  Keep your eyes peeled for an <strong>invite code</strong> and make sure that you whitelist all emails from <a href="mailto:rightcallinfo@gmail.com">rightcallinfo@gmail.com</a>.</p>
+<p>While you're waiting, make sure to check us out on <a href="http://www.facebook.com/samrightcall">Facebook</a> and <a href="http://www.twitter.com/samrightcall">Twitter</a>.  We would love to connect with you!  Also make sure to <strong>tell your friends about RightCall.</strong></p>
 <p>We look forwards to getting to know you and helping you out.  If you have any comments, questions, or just want to say hi, don't hesitate to email me at <a href="mailto:sam@rightcall.co">sam@rightcall.co</a>.</p>
 Sam Gavis-Hughson
 <br />

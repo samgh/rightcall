@@ -12,7 +12,6 @@ $(function() {
 	$('#email-signup-container button').click(function(e) {
 		e.preventDefault();
 		if (isEmail($('#email-signup').val())) {
-			alert('Thank you.');
 			$('form').submit();
 		} else {
 			alert('Please enter a valid email address.');
@@ -21,7 +20,6 @@ $(function() {
 	$('#email-signup-container-2 button').click(function(e) {
 		e.preventDefault();
 		if (isEmail($('#email-signup-2').val())) {
-			alert('Thank you.');
 			$('form').submit();
 		} else {
 			alert('Please enter a valid email address.');

@@ -54,3 +54,7 @@ footer {
 	font-weight: bold;
 	text-rendering: optimizelegibility;
 }
+#error {
+	margin: 5px;
+	display: none;
+}
