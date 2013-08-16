@@ -51,7 +51,6 @@ class Home(BaseHandler):
         self.response.write(template.render(loginFailed=self.session.get('login_failed'),
             userLoggedIn=loggedIn, username=firstname))
         self.session['login_failed'] = False
-        invitations.SetAllEmailsNotSent()
 
 
 #        allusers = users.GetAllUsers()
